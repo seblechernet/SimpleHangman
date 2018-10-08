@@ -26,27 +26,55 @@ public class Main {
         System.out.println(theWord);
         char[] letters = new char[theWord.length()];
         letters = theWord.toCharArray();
-        char[] guess = new char[theWord.length()];
-        int count =1;
-do {
-    System.out.println("Enter the letter");
-    char aletter = sc.next().charAt(0);
+        Character[] guess = new Character[theWord.length()];
+        int count = 1;
+        boolean incorrect = true;
 
-    for (int i = 0; i < letters.length; i++) {
+        do {
+            boolean cont=false;
+            System.out.println("\nEnter the letter");
+            char aletter = sc.next().charAt(0);
 
-        if ((aletter == letters[i])) {
-            guess[i] = aletter;
-        } else
-            guess[i] = '_';
+            for (int i = 0; i < letters.length; i++) {
 
-    }
-    System.out.println("Your guess so far");
-    for (char a : guess) {
-        System.out.print(a + "  ");
+                if ((aletter == letters[i])) {
+                    guess[i] = aletter;
+                    incorrect = false;
 
-    }
-    count++;
-}while(count<guess.length);
+                }
+
+            }
+            for (Character each : guess) {
+                if (each == null) {
+                    cont=true;
+                    break;
+                }
+
+            }
+            if (incorrect == true) {
+                System.out.println("You have guessed incorrectly " + count + "/6 times");
+                count++;
+
+            }
+            System.out.println("Your guess so far");
+            for (int i = 0; i < guess.length; i++) {
+                if (guess[i] != null) {
+                    System.out.print(guess[i] + "  ");
+                } else
+                    System.out.print(" _ ");
+            }
+            if (count == 6) {
+                System.out.println("Sorry, you have no more guesses left. The word was " + theWord);
+                break;
+            }
+            if (cont==false){
+                System.out.println("You have WON!!!!!!!!");
+                break;
+            }
+
+
+
+        } while (count<6);
 
 
     }
