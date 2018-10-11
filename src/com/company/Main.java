@@ -28,9 +28,10 @@ public class Main {
         letters = theWord.toCharArray();
         Character[] guess = new Character[theWord.length()];
         int count = 1;
-        boolean incorrect = true;
+
 
         do {
+            boolean incorrect = true;
             boolean cont=false;
             System.out.println("\nEnter the letter");
             char aletter = sc.next().charAt(0);
